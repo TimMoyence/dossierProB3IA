@@ -1,4 +1,4 @@
-## 📄 Page de garde
+# 📄 Page de garde
 
 **Nom et prénom** : Tim Moyence  
 **École** : EPSI Bordeaux  
@@ -65,7 +65,7 @@ J'ai par ailleurs eu l'opportunité de travailler sur des projets dans le cadre 
 Cela m'a permit de mettre en pratique la gestion de call API avec différentes IA par le biais de Langchain permettant le plug and play de différentes IA, ainsi que la gestion de la data avec des outils comme dbt et Metabase.
 J'ai également pu travailler sur la mise en place des prémices d'un assistant intelligent dédié à la médiation culturelle muséale, projet qui me tient particulièrement à cœur.
 
-## 3. Le projet de gestion de chais
+### 3. Le projet de gestion de chais
 
 Le projet de gestion de chais est un projet d'application, web et mobile, destinée à optimiser la gestion des chais pour les personnes travaillant dans le cognassé. Il permet de suivre grâce a trois modules :
 
@@ -79,7 +79,7 @@ L'application est développée en C# utilissant le framework ASP.NET Core Blazor
 
 ---
 
-### Architecture FRONT et BACK :
+#### Architecture FRONT et BACK
 
 MVVM : Modèle View View Model
 
@@ -136,7 +136,7 @@ La base de données utilisée est PostgreSQL, avec une architecture orientée mi
 
 [base de données diagram](GestionChais.png)
 
-### Acteurs internes/externes
+#### Acteurs internes/externes
 
 J'ai pu gérer ce projet en tant que developpeur et product manager d'une equipe de 3. Nous avons réalisé dans la mesure du possible avec nos alternance respective une gestion de projet SCRUM par des reunion matinal de scrum, la tenu d'un Jira ou j'ai pu réaliser les user story et les tickets en liens avec les figma et le designers de l'entreprise. Des testes de grooming par poker planning, puis finalement par identification par collaborateur. Nous avons également mis en place dans un premier temps des reunion splus eparces puis rassemblé les sprint plannings, sprint review et groming sur la meme demi journée, permettant de terminer et lancer un sprint dans les meilleures conditions.
 Celle ci etait lancé en milieu de semaine pour eviter la mise en production en fin de semaine.
@@ -189,7 +189,7 @@ Ce test concluant m'a permis, grâce au pouvoir de l'entrainement massif de chat
 
 À la suite de cette expérience, l’idée d’une application dédiée a émergé. J’ai d’abord développé une première version backend pour tester le concept, puis mis en œuvre une première version fonctionnelle en équipe, encore en cours de développement à ce jour.
 
-### Architecture technique
+#### Architecture technique
 
 J'ai ainsi pu déployer une architecture technique moderne, modulaire et maintenable, pensée pour répondre aux exigences d’un système embarquant de l’intelligence artificielle tout en restant fluide et accessible pour un large public.
 
@@ -258,7 +258,7 @@ le dossier adapters/secondary/
 
 Le grand avantage de cette architecture est l’inversion des dépendances : ce sont les adaptateurs secondaires qui dépendent du cœur métier, jamais l’inverse. Concrètement, cela signifie que l’on peut remplacer une base PostgreSQL par une base MongoDB, ou une IA OpenAI par une IA locale, sans modifier les cas d’usage.
 
-### Intégration de l’intelligence artificielle avec LangChain et GPT-4 Vision
+#### Intégration de l’intelligence artificielle avec LangChain et GPT-4 Vision
 
 Comme vu au dessus l'application repose sur une architecture permettant d'etre scalable et modulaire. Mais l'utilisation du Framework Langchain, permet de faciliter la création de chaînes d’interactions entre l’utilisateur et un modèle de langage (LLM). Il permet notamment de gérer la mémoire conversationnelle, le chaînage d’outils, de prompt, l'ajout de texte paramétré, la répartition des tâches entre plusieurs modules IA, ou encore l’analyse sémantique enrichie.
 
@@ -272,7 +272,7 @@ Les modules IA implémentés incluent :
 
 ⸻
 
-### Base de données : persistance fiable avec PostgreSQL + TypeORM
+#### Base de données : persistance fiable avec PostgreSQL + TypeORM
 
 Comme indiqué au dessus, les conversations, les messages, la gestion utilisateur sont stockées dans une base PostgreSQL, intégrée dans un conteneur Docker dédié. Cette base contient :
 
@@ -283,43 +283,240 @@ L’usage de TypeORM permet de maintenir un bon niveau d’abstraction vis-à-vi
 
 ⸻
 
-# J'EN SUIS LA
+#### Conteneurisation avec Docker : portabilité et déploiement autonome
 
----
+Pour garantir un déploiement rapide, qu'importe le poste, toute l’architecture backend a été conteneurisée avec Docker, cela permet de :
 
-### Conteneurisation avec Docker : portabilité et déploiement autonome
-
-Pour garantir un déploiement stable et reproductible, toute l’architecture backend a été conteneurisée avec Docker. Cela permet de :
-
-- Isoler les composants : backend, base de données, services tiers,
-- Faciliter les tests et la mise en production,
+- Isoler les composants : backend, base de données, services tiers
+- Faciliter les tests et la mise en production
 - Déployer rapidement sur tout type d’infrastructure, sans dépendance forte à un cloud spécifique.
 
-L’ensemble du projet est hébergé sur un serveur VPS OVH, configuré pour supporter les différentes charges applicatives, gérer les logs, et permettre des déploiements itératifs à l’aide de d≥ocker-compose.
+L’ensemble du projet a été hébergé sur un serveur VPS OVH, configuré pour supporter les différentes charges applicatives, gérer les logs, et permettre des déploiements itératifs à l’aide de docker-compose.
 
-📌 [Schéma suggéré : stack technique conteneurisée avec Backend + PostgreSQL + Nginx (facultatif)]
+Le projet a ainsi 3 services principaux :
+
+- le backend
+- la base de données
+- adminer permettant d'administrer la base de données
+
+Tout étant partagé par un volume de donnée permettant de garder les données persistantes entre les redémarrages du conteneur.
+
+📌 [Capture d'écran du docker compose et des différents services]
 
 ⸻
 
-### Frontend mobile
+#### Frontend mobile
 
-Pour l’interface utilisateur, nous avons opté pour React Native avec TypeScript, en utilisant le Framework Expo. L'objectif est de produire une application mobile cross-platform performante, tout en assurant une cohérence du design, une rapidité de developpement multi plateform permettant de réaliser un POC rapidement.
+Pour l’interface utilisateur, nous avons opté pour React Native avec TypeScript, en utilisant le Framework Expo. L'objectif est de produire une application mobile cross-platform performante, tout en assurant une cohérence du design, une rapidité de developpement multi plateform grâce a React Native nous permet de réaliser un POC rapidement.
 
 Les écrans déjà fonctionnels à ce jour comprennent :
 
 - Une page d’accueil avec authentification
 - Un tableau de bord centralisant les conversations passées
-- Une interface de chat enrichie, avec aperçu en direct des images d’œuvres envoyées
-- Une navigation thématique via des tags, permettant à l’utilisateur d’explorer des courants ou des thématiques précises : Renaissance, couleurs, émotions, artistes féminines, etc.
+- Une interface de chat, avec aperçu en direct des images d’œuvres envoyées
+- Une navigation thématique via des tags, permettant à l’utilisateur d’explorer dans un premier temps AJOUTER LES TAG POSSIBLE
 
 Le tout est stylisé avec Tailwind CSS, adapté à React Native, pour assurer un rendu esthétique cohérent, moderne et surtout ergonomique sur mobile.
 
 📌 [Capture suggérée : aperçu de l’écran de chat avec un visuel d’œuvre et une réponse IA]
 
-⸻
+#### Vers une médiation culturelle augmentée
 
-### Conclusion : Vers une médiation culturelle augmentée
-
-Ce projet est né d’une simple expérience personnelle et s’est mué en un véritable assistant intelligent au service de la médiation culturelle. Il repose sur une approche technique solide et moderne, couplée à une utilisation stratégique de l’intelligence artificielle générative. Son potentiel d’évolution est vaste : ajout de synthèse vocale (TTS), intégration de parcours géolocalisés dans les musées, ou encore enrichissement collaboratif des données culturelles.
+Ce projet est né d’une simple expérience personnelle et s’est mué en un véritable assistant intelligent au service de la médiation culturelle. Il repose sur une approche d'utilisation de l’intelligence artificielle générative tels que chat GPT qui a engrangé une quantité enorme d'inforamation et est donc capable de connaitre, reconnaitre et traiter un grand ensemble d'oeuvres permettant ainsi d'envisager la mise en place d'une section oeuvre inconnu avec par exemple des oeuvres afficaines qui ne sont pas ou pas connu et permettrait ainsi d'avoir accès a une culture et de l'art meme dans une région ou celle ci est moins expliqué car ne présente pas de conservateur pour mettre ne place des parcours utilisateur et des explicaitons d'oeuvres.
+Nous pouvons également imaginer l'ajout de synthèse vocale (TTS), l'intégration de parcours géolocalisés dans les musées, ou encore enrichissement collaboratif des données culturelles.
 
 Plus qu’un projet technique, c’est une expérience sensible, un moyen de réenchanter la visite culturelle pour tous, à son propre rythme, avec une technologie qui s’efface pour laisser place à la découverte.
+
+### 🧪 Projet 3 – Plateforme prédictive épidémiologique (FastAPI + AutoGluon + Azure)
+
+### 1. Contexte et enjeux du projet
+
+#### 1.1 Contexte sanitaire et besoin de prédiction
+
+Ce projet s’inscrit dans le cadre du module MSPR TPRE502, dans une logique de mise en œuvre complète de la chaîne de valeur d’un projet IA : depuis la collecte et la préparation des données jusqu’à la mise à disposition d’un service prédictif via une API. L'objectif principal de ce projet était la création d'un modèle permettant la prédiction de cas dans le cadre de l'épidémie de covid et la variole du Singe.
+
+Pour cela nous avons mis en place un double objectif :
+
+- **Construire une plateforme de prédiction multi-cibles épidémiologiques**, capable de prédire plusieurs indicateurs (nouveaux cas, décès, récupérations, etc.) en fonction de la géolocalisation et du temps.
+- **Déployer une solution modulaire, conteneurisée et documentée**, permettant une intégration rapide dans un système d’information de santé publique ou dans un outil de data visualisation.
+
+#### 1.2 Positionnement dans la chaîne de valeur Data / IA
+
+Ce projet se positionne sur l’ensemble des étapes du cycle de vie d’un produit Data :
+
+- **Collecte** : extraction des données en csv COVID et MPOX depuis des sources open Data
+- **Préparation** : nettoyage, enrichissement et structuration des données a partir d'excel pour vérifier globalement la manière d'utiliser les données
+- **Injestion** : injestion des données par l'utilisation de DBT et integration de toutes les données dans des tables postgresql
+- **Transformation** : modélisation sémantique avec DBT et structuration étoile orientée analytique,
+- **Entraînement IA** : prédiction automatique avec AutoGluon en multi-cibles,
+- **Déploiement** : exposition des prédictions via une API REST documentée avec FastAPI,
+- **Exploitation** : visualisation via une interface frontend en React, avec intégration directe de l’API.
+
+Ce projet m’a permis de mobiliser à la fois mes compétences en traitement de données, en Machine Learning, en développement backend et en architecture logicielle.
+
+## 2. Architecture technique et choix technologiques
+
+### 2.1 Vue d’ensemble de l’architecture
+
+L’architecture technique du projet a été pensée selon un modèle **modulaire, conteneurisé et évolutif**, reposant sur les grands principes du développement moderne : séparation des responsabilités, scalabilité et automatisation.
+
+Elle s’articule autour de 4 couches principales :
+
+1. **Traitement et Ingestion des données** (ETL + modélisation via DBT)
+2. **Exposition des données** exposition des données avec metabase et d'une APi REST pour pouvoir ajouter ou modifier les données
+3. **Machine Learning** (entraînement automatique des modèles avec AutoGluon)
+4. **Exposition des résultats** (API FastAPI + interface utilisateur React)
+
+L’ensemble est orchestré via Docker, garantissant la reproductibilité, la compatibilité entre environnements, et la facilité de déploiement. Des tests ont meme était fait pour utiliser un orchestrateur en fonction des pays a partir de kubernetes.
+
+## J'EN SUIS LA
+
+### 3.3 Schéma d’architecture
+
+[Schema d l'architeture a a récupérr du dossier word] ()
+
+### 3.2 Choix des technologies
+
+#### 🧱 Backend API – FastAPI
+
+- **Motivation** : Rapidité de développement, support natif d’OpenAPI, intégration facile avec Pydantic pour la validation des données.
+- **Usage** : Exposition de routes REST pour la prédiction, la consultation des modèles disponibles et l’insertion des résultats en base PostgreSQL.
+
+#### 🤖 Machine Learning – AutoGluon
+
+- **Motivation** : Plateforme AutoML puissante, permettant l’automatisation complète de l’entraînement de modèles.
+- **Avantages** :
+
+  - Support multi-modèles (LightGBM, CatBoost, FastAI, NeuralNetTorch, etc.),
+  - Stacking automatique sur plusieurs niveaux,
+  - Optimisation intégrée sur des métriques de régression (RMSE, MAE, R²),
+  - Définition d’une limite de temps par cible (600 secondes) pour équilibrer performance et coût.
+
+- **Résultat** : Un modèle distinct par indicateur épidémiologique, stocké dans un répertoire versionné (`/models/`), avec score par pays, année et continent.
+
+#### 🗃️ Base de données – PostgreSQL
+
+- Stockage des données brutes et retraitées (modèle en étoile avec table de faits et dimensions),
+- Stockage des prédictions effectuées par l’API.
+
+#### 🔄 DBT (Data Build Tool)
+
+- **Motivation** : Structuration robuste des données en 3 couches :
+
+  - **Bronze** : injection des données brutes COVID-19 et MPOX,
+  - **Silver** : enrichissement géographique et temporel,
+  - **Gold** : table de faits prête à l’usage pour le Machine Learning.
+
+- **Avantages** : documentation automatique, versionning des transformations, contrôle qualité intégré.
+
+#### 💻 Frontend – React + Vite + Tailwind
+
+- **Motivation** : Stack moderne, rapide à mettre en place, réactive et ergonomique.
+- **Composants clés** :
+
+  - Formulaire d’entrée pour générer des prédictions à partir de données manuelles,
+  - Affichage conditionnel des résultats,
+  - Icônes via Lucide React,
+  - Graphiques via la librairie **Recharts**, permettant une intégration directe dans React sans surcharge inutile.
+
+#### 🐳 Orchestration – Docker & Docker Compose
+
+- Conteneurisation des 4 services : `postgres`, `api`, `trainer`, `frontend`,
+- Réseau interne (`backend`, `frontend`) pour isolation,
+- Montage du dossier partagé `/models` pour que l’API accède aux modèles générés à chaud par l’entraîneur.
+
+## 4. Méthodologie de travail et organisation
+
+### 4.1 Approche projet
+
+Ce projet a été mené selon une approche **agile**, combinant planification initiale, itérations courtes, livraisons intermédiaires et ajustements progressifs. Le but était de favoriser la montée en compétence tout en produisant un livrable concret, utile et réutilisable.
+
+Nous avons adopté les principes suivants :
+
+- **Découpage modulaire** : chaque brique technique (ETL, ML, API, Frontend) a été développée indépendamment mais de manière cohérente avec les autres.
+- **Tests manuels fréquents** : notamment sur l’API, les données d’entraînement, les scores AutoGluon et les prédictions finales.
+- **Documentation progressive** : intégrée dans les scripts DBT, les readme de chaque dossier, et synthétisée dans le livrable final.
+
+### 4.2 Organisation et outils
+
+#### 🛠️ Outils utilisés
+
+- **Trello** pour la gestion des tâches et le suivi d’avancement,
+- **Git** et **GitHub** pour le versionnement,
+- **Docker Compose** pour la cohérence entre les environnements,
+- **Notion** pour la documentation complémentaire,
+- **Metabase** pour la visualisation métier en parallèle du projet IA.
+
+#### 📆 Planification
+
+Le projet a officiellement débuté en **février 2025** avec une première phase de cadrage fonctionnel et de prise en main des sources de données.
+
+Un **diagramme de Gantt**, réalisé via Instagantt, a permis de définir les jalons suivants :
+
+| Étape principale                     | Période approximative |
+| ------------------------------------ | --------------------- |
+| Analyse et cadrage                   | Fév. 2025             |
+| Mise en place du modèle de données   | Mars 2025             |
+| Développement des modèles DBT        | Avril 2025            |
+| Entraînement des modèles IA          | Mai 2025              |
+| Développement de l’API & du Frontend | Juin 2025             |
+| Finalisation, tests et rendu         | Juillet 2025          |
+
+### 4.3 Répartition des tâches
+
+Le projet a été conçu comme une démonstration complète de mes compétences en développement IA & Data, avec une implication sur l’ensemble des couches techniques :
+
+- **Traitement de la donnée** (DBT, PostgreSQL) – 30 %
+- **Machine Learning** (AutoGluon, scripts Python) – 40 %
+- **API & Frontend** – 20 %
+- **Documentation & coordination projet** – 10 %
+
+Ce découpage a permis une montée en autonomie progressive, avec un rythme soutenu jusqu’à la livraison finale.
+
+5. Résultats obtenus et évaluation
+   5.1 Choix du framework : AutoGluon
+
+Le projet nécessitait une solution d'apprentissage automatique capable de s'adapter à plusieurs indicateurs cibles, sans multiplier la complexité algorithmique. AutoGluon a été retenu comme framework principal pour l’entraînement des modèles en raison de ses atouts majeurs :
+
+Automatisation du pipeline de machine learning : AutoGluon prend en charge l’ingestion des données, le prétraitement, la sélection de modèles, la validation croisée, l’optimisation d’hyperparamètres et l’assemblage final.
+Stacking multi-niveaux : AutoGluon utilise une stratégie d’empilement (stacking) de modèles sur plusieurs couches (L1, L2…), permettant de combiner intelligemment plusieurs algorithmes comme LightGBM, CatBoost, XGBoost, NeuralNetTorch, KNN, etc.
+Adaptabilité aux ressources : Un temps d’entraînement maximal de 600 secondes a été imposé pour chaque cible, assurant un bon équilibre entre performance prédictive et coût computationnel.
+Évaluation intégrée : Le framework permet un calcul direct de plusieurs métriques clés : RMSE, MAE, R², et Pearson, facilitant la comparaison entre cibles.
+5.2 Fonctionnement des modèles AutoGluon
+
+Pour chaque indicateur cible (ex. : new_cases, new_deaths, active_cases, etc.), un modèle indépendant est entraîné à partir de données prétraitées (via DBT). Chaque modèle suit une procédure stricte :
+
+Préparation du dataset :
+Nettoyage des valeurs manquantes,
+Ajout de features temporelles (jour, semaine, année),
+Création de moyennes mobiles sur 7 jours et deltas J-J7 pour capturer les tendances.
+Split temporel :
+70 % des données pour l'entraînement,
+15 % pour la validation,
+15 % pour le test,
+Une logique de fallback est intégrée si un des jeux est vide, en élargissant dynamiquement l’échantillon.
+Sélection automatique de modèles de base :
+AutoGluon essaie une centaine de configurations incluant : LightGBM (et LightGBMXT), CatBoost, XGBoost, KNN, Random Forest, Extra Trees, réseaux de neurones torch et FastAI.
+Chaque modèle est entraîné et évalué individuellement, puis les meilleurs sont combinés via un WeightedEnsemble_L2.
+Évaluation et scoring :
+À l’issue de l’entraînement, chaque modèle est évalué sur le jeu de test via les métriques précitées.
+Les prédictions sont sauvegardées et des scores par pays et par année sont également produits sous forme de fichiers scores_by_group.csv.
+Persistance des modèles :
+Chaque modèle est sauvegardé dans un dossier models/{target}/ accessible par l’API FastAPI.
+Une API dédiée permet ensuite de charger dynamiquement le bon modèle et de produire des prédictions en ligne à partir de nouvelles données.
+5.3 Interprétation des résultats
+
+L'évaluation des modèles a montré des performances contrastées selon les cibles. Les indicateurs de type new_cases ou new_deaths présentent une certaine stabilité grâce aux signaux temporels ajoutés, tandis que new_recovered ou cases_per_million montrent davantage de variabilité, en lien avec les disparités géographiques et les biais de déclaration.
+
+Les scores négatifs de R² observés sur certaines cibles indiquent un fort désalignement entre les prévisions et les données réelles, ce qui a conduit à des actions correctives : nettoyage plus strict, enrichissement de features, ou exclusion de cibles trop bruitées.
+
+5.4 Bilan sur l’IA et mes compétences mobilisées
+
+Ce projet m’a permis d’explorer concrètement la mise en œuvre complète d’un pipeline de machine learning en production :
+
+Préparation et ingénierie des features avancée : intégration de signaux temporels, moyennes mobiles, catégorisation géographique.
+Entraînement multi-cibles automatisé : gestion de modèles indépendants, avec monitoring de la qualité.
+Utilisation de modèles en ligne : intégration dans une API scalable et connectée à une base PostgreSQL pour tracer les prédictions.
+Évaluation fine : sélection de métriques pertinentes pour la régression, et enregistrement structuré des résultats.
+Capacité à itérer rapidement pour corriger les erreurs (ex. : cibles trop bruitées, validation vide).
+La robustesse d’AutoGluon a été un levier important, mais c’est la maîtrise de son paramétrage, de la gestion des données et de l’exploitation API qui ont permis d’en tirer le plein potentiel.
